@@ -1,3 +1,6 @@
+![MineStore Logo](https://minestorecms.com/assets/img/logos/logo-colored.png)<br>
+<br>
+<br>
 **Official Next.js Frontend Template for MineStore 3.x (Sandbox)**
 
 Welcome to the official Next.js frontend template for MineStore 3.x version! This template was meticulously crafted and generously contributed by TripleZone, a valued member & developer of the MineStore Community.
