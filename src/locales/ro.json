@@ -16,7 +16,8 @@
         "players-online": "Jucători online",
         "members-online": "Membri online",
         "donation-goal": "Obiectiv de donație",
-        "discord-server": "Server Discord"
+        "discord-server": "Server Discord",
+        "copied-to-clipboard": "Copiat în clipboard"
     },
     "sidebar": {
         "home": "Acasă",

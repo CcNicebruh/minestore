@@ -16,7 +16,8 @@
         "players-online": "שחקנים מחוברים",
         "members-online": "חברים מחוברים",
         "donation-goal": "מטרת תרומה",
-        "discord-server": "שרת Discord"
+        "discord-server": "שרת Discord",
+        "copied-to-clipboard": "הועתק ללוח"
     },
     "sidebar": {
         "home": "דף הבית",

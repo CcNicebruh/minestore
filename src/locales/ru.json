@@ -16,7 +16,8 @@
         "players-online": "Игроки онлайн",
         "members-online": "Пользователи онлайн",
         "donation-goal": "Цель пожертвования",
-        "discord-server": "Сервер Discord"
+        "discord-server": "Сервер Discord",
+        "copied-to-clipboard": "Скопировано в буфер обмена"
     },
     "sidebar": {
         "home": "Главная",

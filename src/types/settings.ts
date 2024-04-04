@@ -17,6 +17,7 @@ export type TSettings = {
         icon: string;
     }>;
     website_name: string;
+    website_description: string;
     server: {
         ip: string;
         port: string;

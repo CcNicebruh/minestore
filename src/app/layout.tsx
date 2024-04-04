@@ -1,18 +1,36 @@
 import './globals.css';
+import { getEndpoints } from '@/api';
+import { fetcher } from '@/api/server/fetcher';
 
 import type { Metadata } from 'next';
 import { App } from './app';
 import { Montserrat } from 'next/font/google';
 import { ThemeProvider } from './providers/theme-provider';
 
+const { getSettings } = getEndpoints(fetcher);
+
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'] });
 
-export const metadata: Metadata = {
-    title: `${process.env.NEXT_PUBLIC_WEBSTORE_NAME}`,
-    description: `${process.env.NEXT_PUBLIC_WEBSTORE_DESCRIPTION}`,
-    icons: `${process.env.NEXT_PUBLIC_API_URL}/assets/logo.png`,
-    applicationName: `${process.env.NEXT_PUBLIC_WEBSTORE_NAME}`,
-    metadataBase: new URL(`${process.env.NEXT_PUBLIC_API_URL}`)
+export const generateMetadata = async (): Promise<Metadata> => {
+    try {
+        const { website_name, website_description } = await getSettings();
+
+        return {
+            title: `${website_name}`,
+            description: `${website_description}`,
+            icons: `${process.env.NEXT_PUBLIC_API_URL}/assets/logo.png`,
+            applicationName: `${website_name}`,
+            metadataBase: new URL(`${process.env.NEXT_PUBLIC_API_URL}`)
+        };
+    } catch (e) {
+        return {
+            title: `${process.env.NEXT_PUBLIC_WEBSTORE_NAME}`,
+            description: `${process.env.NEXT_PUBLIC_WEBSTORE_DESCRIPTION}`,
+            icons: `${process.env.NEXT_PUBLIC_API_URL}/assets/logo.png`,
+            applicationName: `${process.env.NEXT_PUBLIC_WEBSTORE_NAME}`,
+            metadataBase: new URL(`${process.env.NEXT_PUBLIC_API_URL}`)
+        };
+    }
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

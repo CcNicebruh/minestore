@@ -16,7 +16,8 @@
         "players-online": "Spelare online",
         "members-online": "Medlemmar online",
         "donation-goal": "Donationsmål",
-        "discord-server": "Discord-server"
+        "discord-server": "Discord-server",
+        "copied-to-clipboard": "Kopierad till urklipp"
     },
     "sidebar": {
         "home": "Hem",

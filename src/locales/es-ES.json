@@ -16,7 +16,8 @@
         "players-online": "Jugadores en línea",
         "members-online": "Miembros en línea",
         "donation-goal": "Meta de Donación",
-        "discord-server": "Servidor de Discord"
+        "discord-server": "Servidor de Discord",
+        "copied-to-clipboard": "¡Copiado al portapapeles!"
     },
     "sidebar": {
         "home": "Inicio",

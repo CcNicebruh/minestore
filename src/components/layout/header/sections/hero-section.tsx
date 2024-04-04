@@ -5,8 +5,8 @@ import Link from 'next/link';
 import axios from 'axios';
 import { getEndpoints } from '@/api';
 import { TSettings } from '@/types/settings';
-import { sweetAlert } from '@helpers/sweet-alert';
 import { useTranslations } from 'next-intl';
+import { notify } from '@/core/notifications';
 
 const { discordWidget, getServerOnline } = getEndpoints(axios);
 
@@ -48,10 +48,15 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
         };
     }, [fetchOnline]);
 
+    const handleCopyServerIP = () => {
+        navigator.clipboard.writeText(settings.server.ip);
+        notify(`${t('copied-to-clipboard')}`, 'green');
+    };
+
     return (
         <div className="w-full flex-row items-center justify-center">
             <div
-                onClick={() => sweetAlert(`${settings.server.ip}`)}
+                onClick={handleCopyServerIP}
                 className="-mt-20 hidden cursor-pointer items-center gap-2 transition duration-300 hover:scale-110 lg:flex"
             >
                 <ReactSVG className="h-12 w-12 text-primary" src="/icons/play.svg" />

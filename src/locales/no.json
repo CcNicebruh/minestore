@@ -16,7 +16,8 @@
         "players-online": "Spillere på nett",
         "members-online": "Medlemmer på nett",
         "donation-goal": "Donasjonsmål",
-        "discord-server": "Discord-server"
+        "discord-server": "Discord-server",
+        "copied-to-clipboard": "Kopiert til utklippstavlen"
     },
     "sidebar": {
         "home": "Hjem",
