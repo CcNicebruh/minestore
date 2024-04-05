@@ -64,7 +64,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                 <TableCell className="hidden md:block">
                     {item.image ? (
                         <Image
-                            src={`http://experimental.minestorecms.com${item.image}`}
+                            src={`${process.env.NEXT_PUBLIC_API_URL}${item.image}`}
                             alt=""
                             width={80}
                             height={80}
