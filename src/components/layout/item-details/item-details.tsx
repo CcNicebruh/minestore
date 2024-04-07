@@ -5,8 +5,8 @@ import { Price } from '@/components/base/price/price';
 import { useCartStore } from '@/stores/cart';
 import { TItem } from '@/types/item';
 import { CardActionButtons } from '@layout/card/card-actions';
+import { X } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
-import { RiCloseFill } from 'react-icons/ri';
 
 const { getItem } = getEndpoints(fetcher);
 
@@ -46,7 +46,7 @@ export const ItemDetails: FC<DetailsProps> = ({ show, onHide, id, route }) => {
                     onClick={onHide}
                     className="ml-auto flex h-6 w-6 items-center justify-center rounded bg-accent-foreground/10 transition-colors duration-200 hover:bg-accent-foreground/20 focus:outline-none focus:ring-2 focus:ring-accent-foreground/50 focus:ring-offset-2 focus:ring-offset-accent-foreground/10"
                 >
-                    <RiCloseFill />
+                    <X size={14} />
                 </button>
             </div>
 

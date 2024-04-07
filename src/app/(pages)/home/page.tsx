@@ -14,7 +14,7 @@ export default async function Home() {
         <>
             <FeaturedDeals featuredDeals={featuredDeals} />
 
-            <div className="bg-card flex-col rounded-[10px]">
+            <div className="flex-col rounded-[10px] bg-card">
                 <div className="p-4">
                     <Alert />
 

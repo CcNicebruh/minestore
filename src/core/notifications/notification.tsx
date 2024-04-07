@@ -2,7 +2,7 @@ import { joinClasses } from '@helpers/join-classes';
 import { FC, useEffect, useState } from 'react';
 import { TLevel } from './level';
 import toast, { Toast, CheckmarkIcon } from 'react-hot-toast';
-import { IoCloseCircle } from 'react-icons/io5';
+import { XCircle } from 'lucide-react';
 
 type NotificationProps = {
     id: string;
@@ -63,7 +63,7 @@ export const Notification: FC<NotificationProps> = ({ id, message, level }) => {
             {level === 'green' && <CheckmarkIcon />}
             {level === 'red' && (
                 <div className="text-2xl">
-                    <IoCloseCircle />
+                    <XCircle />
                 </div>
             )}
             <span className="ml-4 font-bold">{message}</span>

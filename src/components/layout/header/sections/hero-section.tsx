@@ -50,7 +50,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
 
     const handleCopyServerIP = () => {
         navigator.clipboard.writeText(settings.server.ip);
-        notify(`${t('copied-to-clipboard')}`, 'green');
+        notify(`${t('copied-to-clipboard')}`, 'red');
     };
 
     return (

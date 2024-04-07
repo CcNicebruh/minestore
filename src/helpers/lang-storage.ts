@@ -1,15 +1,15 @@
-import { destroyCookie, parseCookies, setCookie } from "nookies"
+import { setCookie, getCookie, deleteCookie } from 'cookies-next';
 
-const key = "lang"
+const key = 'lang';
 
-export const langStorage = ({
-   get() {
-      return parseCookies(undefined)[key]
-   },
-   save(value: string) {
-      setCookie(null, key, value)
-   },
-   clear() {
-      destroyCookie(null, key)
-   }
-})
+export const langStorage = {
+    get() {
+        return getCookie(key);
+    },
+    save(value: string) {
+        setCookie(key, value);
+    },
+    clear() {
+        deleteCookie(key);
+    }
+};

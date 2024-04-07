@@ -1,15 +1,14 @@
-import { destroyCookie, parseCookies, setCookie } from "nookies"
+import { setCookie, getCookie, deleteCookie } from 'cookies-next';
+const key = 'token';
 
-const key = "token"
-
-export const tokenHelper = ({
-   get() {
-      return parseCookies(undefined)[key]
-   },
-   save(value: string) {
-      setCookie(null, key, value)
-   },
-   clear() {
-      destroyCookie(null, key)
-   }
-})
+export const tokenHelper = {
+    get() {
+        return getCookie(key);
+    },
+    save(value: string) {
+        setCookie(key, value);
+    },
+    clear() {
+        deleteCookie(key);
+    }
+};
