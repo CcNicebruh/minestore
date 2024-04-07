@@ -56,7 +56,9 @@ export function PaymentForm() {
             const response = await checkout({
                 currency: currency?.name || 'USD',
                 paymentMethod: paymentMethod || 'PayPal',
-                details: data.details
+                details: data.details,
+                termsAndConditions: data.termsAndConditions,
+                privacyPolicy: data.privacyPolicy
             });
 
             if (response.success) {

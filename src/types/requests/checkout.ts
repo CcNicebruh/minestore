@@ -11,4 +11,6 @@ export type TCheckoutRequest = {
         region: string;
         zipcode: string;
     };
+    termsAndConditions: boolean;
+    privacyPolicy: boolean;
 };
