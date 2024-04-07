@@ -21,6 +21,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
+import { useSettingsStore } from '@/stores/settings';
 
 const { getCart, removeReferral, acceptReferral } = getEndpoints(fetcher);
 
@@ -36,6 +37,7 @@ export const ReferralCode = () => {
     const t = useTranslations('checkout');
 
     const { setCart, items, cart } = useCartStore();
+    const { settings } = useSettingsStore();
 
     const [loading, setLoading] = useState(false);
 
@@ -75,6 +77,7 @@ export const ReferralCode = () => {
         form.reset();
     }
 
+    if (!settings?.is_ref) return null;
     if (items.length === 0) return null;
 
     return (
