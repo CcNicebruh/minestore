@@ -1,4 +1,9 @@
 /** @type {import("next").NextConfig} */
+
+const removeProtocol = (url) => {
+    return url.replace(/(^\w+:|^)\/\//, '');
+};
+
 const nextConfig = {
     images: {
         remotePatterns: [
@@ -9,7 +14,7 @@ const nextConfig = {
                 hostname: 'minotar.net'
             },
             {
-                hostname: 'themedev2.minestorecms.com'
+                hostname: removeProtocol(process.env.NEXT_PUBLIC_API_URL)
             },
             {
                 hostname: 'i.imgur.com'
