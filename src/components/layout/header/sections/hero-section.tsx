@@ -50,7 +50,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
 
     const handleCopyServerIP = () => {
         navigator.clipboard.writeText(settings.server.ip);
-        notify(`${t('copied-to-clipboard')}`, 'red');
+        notify(`${t('copied-to-clipboard')}`, 'green');
     };
 
     return (
@@ -74,7 +74,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
                 <Link href="/">
                     <Image
                         className="levitate mx-4 h-[338px] w-[381px]"
-                        src={`${process.env.NEXT_PUBLIC_API_URL}/assets/logo.png`}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/img/logo.png`}
                         width={381}
                         height={338}
                         alt="Logo"

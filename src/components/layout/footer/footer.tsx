@@ -57,7 +57,7 @@ function Copyright({ settings }: { settings: TSettings }) {
         <div className="flex flex-col items-center justify-center gap-6 text-center">
             <Image
                 className="aspect-square w-[260px] object-contain"
-                src={`${process.env.NEXT_PUBLIC_API_URL}/assets/logo.png`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/img/logo.png`}
                 width={260}
                 height={231}
                 alt="Logo"

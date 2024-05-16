@@ -1,5 +1,6 @@
 'use client';
 
+import { extractConfigValue } from '@helpers/extract-config-value';
 import { hexToHsl } from '@helpers/hex-to-hsl';
 import * as React from 'react';
 
@@ -8,7 +9,7 @@ type ConfigProviderProps = {
     config: unknown;
 };
 
-type Config = {
+export type Config = {
     author: string;
     config: {
         header: string;
@@ -25,16 +26,9 @@ type Config = {
 
 export function ConfigProvider({ children, config }: ConfigProviderProps) {
     const configData = config as Config;
+    const mainColor = extractConfigValue('main-color', configData);
 
-    const extractConfigValue = (id: string) => {
-        const config = configData.config;
-        const options = config.flatMap((header) => header.options);
-        const option = options.find((option) => option.id === id);
-
-        return option?.default;
-    };
-
-    const { h, l, s } = hexToHsl(extractConfigValue('main-color') as string);
+    const { h, l, s } = hexToHsl(mainColor as string);
 
     return (
         <>

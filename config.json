@@ -12,6 +12,14 @@
                     "type": "textarea"
                 },
                 {
+                    "id": "theme",
+                    "name": "Theme",
+                    "description": "Select the default theme for your website.",
+                    "type": "select",
+                    "default": "system",
+                    "values": ["system", "light", "dark"]
+                },
+                {
                     "id": "screen-loading-enabled",
                     "name": "Toggle Screen Loading",
                     "description": "Toggle the screen loading (NOT RECOMMENDED) If you disable this it's recommended to disable Theme Switcher too.",

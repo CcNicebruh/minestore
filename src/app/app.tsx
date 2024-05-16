@@ -12,6 +12,8 @@ import { Footer } from '@layout/footer/footer';
 import { Sidebar } from '@layout/sidebar/sidebar';
 import { promises as fs } from 'fs';
 import { ConfigProvider } from './providers/config-provider';
+import { ThemeProvider } from './providers/theme-provider';
+import { extractConfigValue } from '@helpers/extract-config-value';
 
 const { getUser, getSettings, getCategories } = getEndpoints(fetcher);
 
@@ -26,22 +28,31 @@ export const App: FC<PropsWithChildren> = async ({ children }) => {
     const file = await fs.readFile(process.cwd() + '/config.json', 'utf8');
     const data = JSON.parse(file);
 
+    const defaultTheme = extractConfigValue('theme', data) || ('system' as string);
+
     return (
-        <AuthProvider initialUser={user}>
-            <LocaleProvider initialMessages={messages}>
-                <Suspense>
-                    <ConfigProvider config={data}>
-                        <Header settings={settings} />
-                        <Container className="mt-4 flex-col gap-5 lg:flex-row">
-                            <Sidebar settings={settings} categories={categories} />
-                            <main className="w-full flex-1 overflow-x-scroll">{children}</main>
-                        </Container>
-                        <Footer settings={settings} />
-                        <Init settings={settings} />
-                        <Toaster position="top-right" reverseOrder={false} />
-                    </ConfigProvider>
-                </Suspense>
-            </LocaleProvider>
-        </AuthProvider>
+        <ConfigProvider config={data}>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme={defaultTheme}
+                enableSystem
+                disableTransitionOnChange
+            >
+                <AuthProvider initialUser={user}>
+                    <LocaleProvider initialMessages={messages}>
+                        <Suspense>
+                            <Header settings={settings} />
+                            <Container className="mt-4 flex-col gap-5 lg:flex-row">
+                                <Sidebar settings={settings} categories={categories} />
+                                <main className="w-full flex-1 overflow-x-scroll">{children}</main>
+                            </Container>
+                            <Footer settings={settings} />
+                            <Init settings={settings} />
+                            <Toaster position="top-right" reverseOrder={false} />
+                        </Suspense>
+                    </LocaleProvider>
+                </AuthProvider>
+            </ThemeProvider>
+        </ConfigProvider>
     );
 };
