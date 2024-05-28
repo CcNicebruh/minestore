@@ -47,18 +47,18 @@ const PriceTag: FC<PriceTagProps> = ({
     }
 
     return (
-        <>
+        <p className={className}>
             {discountedPrice ? (
-                <p className={className}>
+                <>
                     <s className="text-red-400 line-through">{discountedPrice}</s>
                     <span className="text-green-400">{displayPrice}</span>
-                </p>
+                </>
             ) : (
-                <p>
+                <>
                     <span className={cn('text-green-400', className)}>{displayPrice}</span>
-                </p>
+                </>
             )}
-        </>
+        </p>
     );
 };
 
