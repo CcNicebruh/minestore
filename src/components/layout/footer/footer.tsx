@@ -19,7 +19,7 @@ export const Footer: FC<FooterProps> = ({ settings }) => {
             <Container className="-mt-8 grid grid-cols-1 items-start gap-8 py-20 lg:grid-cols-3">
                 <UsefulLinks settings={settings} />
                 <Copyright settings={settings} />
-                <AboutUs />
+                <AboutUs settings={settings} />
             </Container>
         </div>
     );
@@ -84,8 +84,10 @@ function Copyright({ settings }: { settings: TSettings }) {
     );
 }
 
-function AboutUs() {
+function AboutUs({ settings }: { settings: TSettings }) {
     const t = useTranslations('footer');
+
+    const { website_name } = settings;
 
     return (
         <div className="hidden flex-col items-center justify-center gap-6 text-center lg:mt-24 lg:flex">
@@ -95,7 +97,9 @@ function AboutUs() {
                 </h3>
                 <hr className="mx-auto mt-2 h-1 w-12 rounded border-0 bg-primary" />
             </div>
-            <p className="text-balance">{t('description')}</p>
+            <p className="text-balance">
+                {website_name} {t('description')}
+            </p>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import { PaymentMethods } from './payment-methods';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useSettingsStore } from '@/stores/settings';
 
 export function Content() {
     const t = useTranslations('home');
@@ -61,11 +62,14 @@ export function Content() {
 
 function BannerSection() {
     const t = useTranslations('home');
+    const { settings } = useSettingsStore();
 
     return (
         <div className="grid items-start gap-6 md:grid-cols-2">
             <div className="order-2 space-y-2 text-pretty rounded-md border border-accent-foreground/10 bg-accent p-4 text-center md:order-1">
-                <h1 className="text-2xl font-bold text-primary md:text-3xl">{t('welcome')}</h1>
+                <h1 className="text-2xl font-bold text-primary md:text-3xl">
+                    {t('welcome').replace('MinestoreCMS', settings?.website_name || 'MinestoreCMS')}
+                </h1>
                 <p>{t('welcome-description')}</p>
             </div>
             <div className="order-1 md:order-2">
