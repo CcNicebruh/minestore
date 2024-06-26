@@ -23,6 +23,7 @@ export type TSettings = {
         port: string;
     };
     is_FeaturedDeal: number | boolean;
+    is_profile_enabled: number | boolean;
     featuredDeal_items: Array<{
         name: string;
         price: number;

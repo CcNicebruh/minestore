@@ -36,12 +36,7 @@ export const RecentPurchases = ({ limit = 10 }: { limit: number }) => {
 function Donor({ username, avatar }: { username: string; avatar: string }) {
     return (
         <DescriptionTooltip description={username} html={false}>
-            <Link
-                href={`/profile/${username}`}
-                data-tooltip-id="username-tooltip"
-                data-tooltip-content={username}
-                className="h-[60px] w-[60px] overflow-hidden rounded-md"
-            >
+            <DonorProfileLink username={username}>
                 <Image
                     src={avatar}
                     alt={username}
@@ -49,9 +44,27 @@ function Donor({ username, avatar }: { username: string; avatar: string }) {
                     height={60}
                     className="h-full w-full rounded-md object-cover"
                 />
-            </Link>
+            </DonorProfileLink>
         </DescriptionTooltip>
     );
+}
+
+function DonorProfileLink({ username, children }: { username: string; children: React.ReactNode }) {
+    const { settings } = useSettingsStore();
+    const isProfileEnabled = settings?.is_profile_enabled;
+
+    if (isProfileEnabled) {
+        return (
+            <Link
+                href={`/profile/${username}`}
+                className="h-[60px] w-[60px] overflow-hidden rounded-md"
+            >
+                {children}
+            </Link>
+        );
+    }
+
+    return <>{children}</>;
 }
 
 type SkeletonDonorProps = {

@@ -21,15 +21,39 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
     const [discordOnline, setDiscordOnline] = useState(0);
 
     const fetchOnline = useCallback(async () => {
-        try {
-            const discordResponse = await discordWidget(settings.discord_id);
-            setDiscordOnline(discordResponse.presence_count);
+        const promises = [
+            discordWidget(settings.discord_id)
+                .then((data) => ({
+                    type: 'discord',
+                    count: data.presence_count
+                }))
+                .catch(() => ({
+                    type: 'discord',
+                    count: 0
+                })),
+            getServerOnline(settings.server.ip, settings.server.port)
+                .then((data) => ({
+                    type: 'server',
+                    count: data.onlinePlayers || 0
+                }))
+                .catch(() => ({
+                    type: 'server',
+                    count: 0
+                }))
+        ];
 
-            const serverResponse = await getServerOnline(settings.server.ip, settings.server.port);
-            setServerOnline(serverResponse?.onlinePlayers || 0);
-        } catch (error) {
-            console.error('Error fetching online data:', error);
-        }
+        const results = await Promise.allSettled(promises);
+        results.forEach((result) => {
+            if (result.status === 'fulfilled') {
+                if (result.value.type === 'discord') {
+                    setDiscordOnline(result.value.count);
+                } else if (result.value.type === 'server') {
+                    setServerOnline(result.value.count);
+                }
+            } else {
+                console.error('Error fetching data:', result.reason);
+            }
+        });
     }, [settings.discord_id, settings.server.ip, settings.server.port]);
 
     useEffect(() => {
@@ -38,14 +62,9 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
         };
 
         fetchData();
+        const interval = setInterval(fetchData, 20000);
 
-        const interval = setInterval(() => {
-            fetchData();
-        }, 20_000);
-
-        return () => {
-            clearInterval(interval);
-        };
+        return () => clearInterval(interval);
     }, [fetchOnline]);
 
     const handleCopyServerIP = () => {
